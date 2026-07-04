@@ -1,27 +1,54 @@
 import { InstagramMark } from "./Icons";
 import Reveal from "./Reveal";
+import InstagramEmbed from "./InstagramEmbed";
+
+// NOTE for Ajit: these 3 URLs are placeholders. In the Instagram app, open
+// a post/reel -> Share icon -> Copy Link, and swap it in here before going
+// live. Format: https://www.instagram.com/p/POST_ID/ or /reel/POST_ID/
+const posts = [
+  "https://www.instagram.com/p/REPLACE_WITH_POST_1/",
+  "https://www.instagram.com/p/REPLACE_WITH_POST_2/",
+  "https://www.instagram.com/p/REPLACE_WITH_POST_3/",
+];
 
 export default function InstagramCTA() {
   return (
     <section className="bg-ivory py-16 sm:py-20 border-y border-gold/15">
-      <Reveal className="mx-auto max-w-3xl px-6 text-center flex flex-col items-center">
-        <InstagramMark size={26} className="text-gold" />
-        <h2 className="font-display text-2xl sm:text-3xl mt-4">
-          New arrivals, first on Instagram
-        </h2>
-        <p className="text-ink/60 mt-2">
-          New designs, offers and reels — follow{" "}
-          <span className="text-ink/80">@shrirajjewellers_</span>
-        </p>
-        <a
-          href="https://instagram.com/shrirajjewellers_"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center gap-2 border border-gold text-gold hover:bg-gold hover:text-ink transition-colors text-sm tracking-wide px-6 py-3"
-        >
-          Follow on Instagram
-        </a>
-      </Reveal>
+      <div className="mx-auto max-w-5xl px-6">
+        <Reveal className="text-center flex flex-col items-center">
+          <InstagramMark size={26} className="text-gold" />
+          <h2 className="font-display text-2xl sm:text-3xl mt-4">
+            Latest from Instagram
+          </h2>
+          <p className="text-ink/60 mt-2">
+            Follow <span className="text-ink/80">@shrirajjewellers_</span>{" "}
+            for new arrivals, offers and reels
+          </p>
+        </Reveal>
+
+        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+          {posts.map((url, i) => (
+            <Reveal
+              key={url}
+              delay={i * 90}
+              className="w-full flex justify-center"
+            >
+              <InstagramEmbed url={url} />
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={280} className="flex justify-center">
+          <a
+            href="https://instagram.com/shrirajjewellers_"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-10 inline-flex items-center gap-2 border border-gold text-gold hover:bg-gold hover:text-ink transition-colors text-sm tracking-wide px-6 py-3"
+          >
+            Follow on Instagram
+          </a>
+        </Reveal>
+      </div>
     </section>
   );
 }
