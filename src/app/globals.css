@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #1b1714;
+  --color-ink-soft: #262019;
+  --color-ink-line: #3a3128;
+
+  --color-gold: #b08d3e;
+  --color-gold-bright: #ddb876;
+  --color-gold-dim: #8a6f34;
+
+  --color-ivory: #f6f1e7;
+  --color-ivory-dim: #ece4d2;
+
+  --color-maroon: #6e1423;
+  --color-maroon-bright: #8a1c2d;
+
+  --color-stone: #8b7e6a;
+
+  --font-display: "Cinzel", ui-serif, serif;
+  --font-body: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --background: var(--color-ivory);
+  --foreground: var(--color-ink);
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-cinzel), serif;
+}
+
+/* Thin gold hairline divider used across sections as a structural device */
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-gold) 20%,
+    var(--color-gold) 80%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
