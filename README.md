@@ -30,6 +30,19 @@ Output goes to `out/`. Deploy that folder to Cloudflare Pages
 (build command `npm run build`, output directory `out`) — no
 adapter needed since this is a static export, not SSR.
 
+## Hero background video
+
+`src/components/Hero.tsx` is wired for a full-bleed autoplay/muted/loop
+background video (with a dark overlay so text stays legible). It's
+currently empty — drop the actual video file at
+`public/hero-reel.mp4` and rebuild. Recommended specs:
+
+- Format: MP4 (H.264)
+- Length: 8-15 seconds, looped (short and premium beats long and dragging)
+- No audio needed (it plays muted regardless)
+- Keep the file under ~8-10MB if possible for fast load — trim/compress
+  before dropping it in
+
 ## Confirm before going live
 
 - **Offers section** (`src/components/Offers.tsx`): kept generic on

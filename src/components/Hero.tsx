@@ -1,19 +1,40 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import HallmarkSeal from "./HallmarkSeal";
 
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReduced) {
+      videoRef.current?.pause();
+    }
+  }, []);
+
   return (
     <section
       id="top"
       className="relative bg-ink text-ivory overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28"
     >
-      {/* subtle faceted-cut texture, evokes cut stones without using photography */}
-      <div
-        className="absolute inset-0 opacity-[0.05] pointer-events-none"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(115deg, transparent 0 42px, var(--color-gold) 42px 43px), repeating-linear-gradient(25deg, transparent 0 42px, var(--color-gold) 42px 43px)",
-        }}
-      />
+      {/* Background reel — drop the file at public/hero-reel.mp4 */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/hero-reel.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark gold-tinted overlay so text stays legible over the video */}
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink/90" />
+
       <div className="relative mx-auto max-w-5xl px-6 text-center flex flex-col items-center">
         <span className="text-gold text-xs sm:text-sm tracking-[0.35em] uppercase mb-6">
           Tilak Nagar · New Delhi
