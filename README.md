@@ -32,16 +32,19 @@ adapter needed since this is a static export, not SSR.
 
 ## Hero background video
 
-`src/components/Hero.tsx` is wired for a full-bleed autoplay/muted/loop
-background video (with a dark overlay so text stays legible). It's
-currently empty — drop the actual video file at
-`public/hero-reel.mp4` and rebuild. Recommended specs:
+`src/components/Hero.tsx` plays `public/hero-reel.mp4` full-bleed
+(autoplay, muted, loop) with a dark overlay so the gold text stays
+legible, plus `public/hero-poster.jpg` as the instant-paint frame
+before the video buffers. Source clip was vertical (1080x1920, typical
+Reel export) — compressed from 18.6MB HEVC down to ~4MB H.264 with
+audio stripped (it plays muted anyway).
 
-- Format: MP4 (H.264)
-- Length: 8-15 seconds, looped (short and premium beats long and dragging)
-- No audio needed (it plays muted regardless)
-- Keep the file under ~8-10MB if possible for fast load — trim/compress
-  before dropping it in
+Since the source is vertical, on wide desktop screens `object-cover`
+zooms into a centered horizontal slice rather than showing the full
+frame — on phones (where most local customers will actually view this)
+it sits much closer to the original framing. Preview the live deploy
+and ping me if the crop needs nudging (`object-position` can shift the
+focal point) or if you'd rather swap to a shorter trimmed loop.
 
 ## Confirm before going live
 
