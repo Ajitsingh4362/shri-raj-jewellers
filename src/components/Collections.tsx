@@ -104,6 +104,13 @@ const items: {
   },
 ];
 
+const categoryTint: Record<Exclude<Category, "All">, string> = {
+  Gold: "from-[#b08d3e]/[0.09]",
+  Silver: "from-slate-400/[0.09]",
+  Diamond: "from-sky-200/[0.15]",
+  Bridal: "from-[#6e1423]/[0.08]",
+};
+
 export default function Collections() {
   const [active, setActive] = useState<Category>("All");
   const visible =
@@ -140,8 +147,13 @@ export default function Collections() {
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {visible.map((item, i) => (
             <Reveal key={item.title} delay={(i % 6) * 70}>
-              <div className="group h-full border border-ink/10 bg-white/40 hover:border-gold/50 hover:bg-white transition-colors p-7 flex flex-col">
-                <item.icon className="w-10 h-10 text-gold" />
+              <div
+                className={`group relative h-full overflow-hidden border border-ink/10 hover:border-gold/50 transition-colors p-7 flex flex-col bg-gradient-to-br ${categoryTint[item.category]} via-white/70 to-white`}
+              >
+                <div className="relative w-16 h-16 rounded-full border border-gold/40 group-hover:border-gold flex items-center justify-center transition-colors">
+                  <div className="absolute inset-1.5 rounded-full border border-gold/20" />
+                  <item.icon className="w-8 h-8 text-gold" />
+                </div>
                 <span className="text-[10px] tracking-[0.2em] uppercase text-stone mt-5">
                   {item.category}
                 </span>
