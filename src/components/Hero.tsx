@@ -1,26 +1,46 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import HallmarkSeal from "./HallmarkSeal";
+
+// Slide 0: pure video, fully transparent overlay, no text.
+// Slide 1: dark overlay fades in with the brand text + CTAs on top.
+const SLIDE_DURATIONS = [4500, 8000] as const;
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const reducedMotionRef = useRef(false);
+  const [slide, setSlide] = useState<0 | 1>(0);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    reducedMotionRef.current = prefersReduced;
     if (prefersReduced) {
       videoRef.current?.pause();
+      // Syncing a browser-only API (matchMedia) after mount; this has to
+      // run post-hydration to avoid a server/client mismatch, so it can't
+      // be moved into render.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSlide(1);
     }
   }, []);
+
+  useEffect(() => {
+    if (reducedMotionRef.current) return; // don't auto-cycle slides
+    const timer = setTimeout(() => {
+      setSlide((s) => (s === 0 ? 1 : 0));
+    }, SLIDE_DURATIONS[slide]);
+    return () => clearTimeout(timer);
+  }, [slide]);
 
   return (
     <section
       id="top"
-      className="relative bg-ink text-ivory overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28"
+      className="relative bg-ink text-ivory overflow-hidden h-screen min-h-[560px]"
     >
-      {/* Background reel — drop the file at public/hero-reel.mp4 */}
+      {/* Background reel — plays continuously across both slides */}
       <video
         ref={videoRef}
         autoPlay
@@ -33,10 +53,18 @@ export default function Hero() {
         <source src="/hero-reel.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark gold-tinted overlay so text stays legible over the video */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink/90" />
+      {/* Dark overlay — fully transparent on slide 0, fades in for slide 1 */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink/90 transition-opacity duration-1000 ${
+          slide === 1 ? "opacity-100" : "opacity-0"
+        }`}
+      />
 
-      <div className="relative mx-auto max-w-5xl px-6 text-center flex flex-col items-center">
+      <div
+        className={`relative h-full mx-auto max-w-5xl px-6 flex flex-col items-center justify-center text-center transition-opacity duration-1000 ${
+          slide === 1 ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
         <span className="text-gold text-xs sm:text-sm tracking-[0.35em] uppercase mb-6">
           Tilak Nagar · New Delhi
         </span>
@@ -79,6 +107,20 @@ export default function Hero() {
             Call the Store
           </a>
         </div>
+      </div>
+
+      {/* Slide indicators — always visible, tappable to jump directly */}
+      <div className="absolute bottom-6 inset-x-0 flex justify-center gap-2 z-10">
+        {[0, 1].map((i) => (
+          <button
+            key={i}
+            onClick={() => setSlide(i as 0 | 1)}
+            aria-label={i === 0 ? "Show video" : "Show details"}
+            className={`h-1.5 rounded-full transition-all cursor-pointer ${
+              slide === i ? "w-6 bg-gold" : "w-1.5 bg-ivory/40"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );

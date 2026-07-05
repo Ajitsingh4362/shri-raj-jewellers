@@ -32,19 +32,26 @@ adapter needed since this is a static export, not SSR.
 
 ## Hero background video
 
-`src/components/Hero.tsx` plays `public/hero-reel.mp4` full-bleed
-(autoplay, muted, loop) with a dark overlay so the gold text stays
-legible, plus `public/hero-poster.jpg` as the instant-paint frame
-before the video buffers. Source clip was vertical (1080x1920, typical
-Reel export) — compressed from 18.6MB HEVC down to ~4MB H.264 with
-audio stripped (it plays muted anyway).
+`src/components/Hero.tsx` now runs as a 2-slide sequence over the same
+continuously-playing video:
 
-Since the source is vertical, on wide desktop screens `object-cover`
-zooms into a centered horizontal slice rather than showing the full
-frame — on phones (where most local customers will actually view this)
-it sits much closer to the original framing. Preview the live deploy
-and ping me if the crop needs nudging (`object-position` can shift the
-focal point) or if you'd rather swap to a shorter trimmed loop.
+- **Slide 1** (~4.5s): pure video, overlay at 0% opacity — fully
+  transparent, no text, nothing dimming the footage.
+- **Slide 2** (~8s): the dark gradient overlay fades in and the brand
+  text + CTAs fade in on top, then it loops back to slide 1.
+
+Small gold dots at the bottom show progress and can be tapped to jump
+straight to either slide. Visitors with "reduce motion" turned on skip
+the cycling entirely and land straight on slide 2 (text + CTAs), so
+the WhatsApp/Call buttons are never hidden from them.
+
+`public/hero-reel.mp4` + `public/hero-poster.jpg` as before — compressed
+from 18.6MB HEVC down to ~4MB H.264, audio stripped since it plays muted.
+Since the source is vertical (1080x1920, typical Reel export),
+`object-cover` zooms into a centered horizontal slice on wide desktop
+screens rather than showing the full frame — on phones it sits much
+closer to the original framing. Preview the live deploy and ping me if
+the crop needs nudging (`object-position`) or a shorter trimmed loop.
 
 ## Today's Rate widget (built, currently hidden)
 
