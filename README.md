@@ -46,6 +46,25 @@ it sits much closer to the original framing. Preview the live deploy
 and ping me if the crop needs nudging (`object-position` can shift the
 focal point) or if you'd rather swap to a shorter trimmed loop.
 
+## Today's Rate widget
+
+`src/data/rates.ts` — the ONLY file to edit daily. Currently placeholder
+0s on purpose (no invented numbers). Fill in the shop's actual gold
+24K/22K and silver rate (per gram, INR) and today's date before going
+live, then push. No free, reliable, India-accurate live rate API exists
+without a paid subscription (checked IBJA, GoldAPI, Metals-API — all
+paid or global-spot-only), so this is a manual "board" rather than an
+auto-fetching ticker. Same trust as walking past the shop's own rate
+board — just make sure it's not stale.
+
+## Product gallery
+
+`src/components/Collections.tsx` now has 13 items across Gold, Silver,
+Diamond and Bridal with filter tabs, still using hand-drawn icon
+placeholders (no stock photos). Add more items to the `items` array
+any time — each just needs an icon, title, category and one-line
+description.
+
 ## Confirm before going live
 
 - **Offers section** (`src/components/Offers.tsx`): kept generic on

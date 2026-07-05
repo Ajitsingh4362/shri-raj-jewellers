@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import HallmarkSeal from "./HallmarkSeal";
+import RateTicker from "./RateTicker";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -37,7 +38,9 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink/90" />
 
       <div className="relative mx-auto max-w-5xl px-6 text-center flex flex-col items-center">
-        <span className="text-gold text-xs sm:text-sm tracking-[0.35em] uppercase mb-6">
+        <RateTicker />
+
+        <span className="text-gold text-xs sm:text-sm tracking-[0.35em] uppercase mt-8 mb-6">
           Tilak Nagar · New Delhi
         </span>
 
