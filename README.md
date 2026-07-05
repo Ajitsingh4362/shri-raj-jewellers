@@ -58,6 +58,23 @@ subscription (checked IBJA, GoldAPI, Metals-API — all paid or
 global-spot-only), so this stays a manually-updated "board" rather
 than an auto-fetching ticker.
 
+## Gallery photos
+
+Each of the 4 categories (Gold, Silver, Diamond, Bridal) now shows a
+representative photo across its cards — sourced from Pexels (free for
+commercial use, no attribution required). These are NOT photos of
+Shri Raj Jewellers' actual pieces — they're stand-in category imagery,
+same as most small jewellery sites use before a full product shoot.
+Didn't use the 2 Instagram posts you shared since those weren't the
+shop's own content (checked with you first) — using another brand's
+specific real product photo would misrepresent what's actually in
+stock here, on top of the copyright issue.
+
+To swap in real Shri Raj Jewellers photos later: edit the
+`categoryImage` map in `src/components/Collections.tsx` (4 URLs total,
+one per category) or extend it to a per-item map if you want a unique
+photo for each of the 13 cards instead of one shared per category.
+
 ## Product gallery
 
 `src/components/Collections.tsx` now has 13 items across Gold, Silver,

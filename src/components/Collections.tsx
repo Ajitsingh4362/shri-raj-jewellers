@@ -111,6 +111,17 @@ const categoryTint: Record<Exclude<Category, "All">, string> = {
   Bridal: "from-[#6e1423]/[0.08]",
 };
 
+// Representative category photography — Pexels, free for commercial use,
+// no attribution required. One image per broad category, applied across
+// its items. Swap any of these for real Shri Raj Jewellers product shots
+// whenever they're available (see README).
+const categoryImage: Record<Exclude<Category, "All">, string> = {
+  Gold: "https://images.pexels.com/photos/37485307/pexels-photo-37485307.jpeg?auto=compress&cs=tinysrgb&w=800",
+  Silver: "https://images.pexels.com/photos/5475580/pexels-photo-5475580.jpeg?auto=compress&cs=tinysrgb&w=800",
+  Diamond: "https://images.pexels.com/photos/2735981/pexels-photo-2735981.jpeg?auto=compress&cs=tinysrgb&w=800",
+  Bridal: "https://images.pexels.com/photos/13595793/pexels-photo-13595793.jpeg?auto=compress&cs=tinysrgb&w=800",
+};
+
 export default function Collections() {
   const [active, setActive] = useState<Category>("All");
   const visible =
@@ -148,29 +159,40 @@ export default function Collections() {
           {visible.map((item, i) => (
             <Reveal key={item.title} delay={(i % 6) * 70}>
               <div
-                className={`group relative h-full overflow-hidden border border-ink/10 hover:border-gold/50 transition-colors p-7 flex flex-col bg-gradient-to-br ${categoryTint[item.category]} via-white/70 to-white`}
+                className={`group relative h-full overflow-hidden border border-ink/10 hover:border-gold/50 transition-colors flex flex-col bg-gradient-to-br ${categoryTint[item.category]} via-white/70 to-white`}
               >
-                <div className="relative w-16 h-16 rounded-full border border-gold/40 group-hover:border-gold flex items-center justify-center transition-colors">
-                  <div className="absolute inset-1.5 rounded-full border border-gold/20" />
-                  <item.icon className="w-8 h-8 text-gold" />
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-ink/5">
+                  <img
+                    src={categoryImage[item.category]}
+                    alt={item.title}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 w-11 h-11 rounded-full border border-gold/70 bg-ink/60 backdrop-blur-sm flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-gold" />
+                  </div>
                 </div>
-                <span className="text-[10px] tracking-[0.2em] uppercase text-stone mt-5">
-                  {item.category}
-                </span>
-                <h3 className="font-display text-lg mt-1">{item.title}</h3>
-                <p className="text-sm text-ink/60 mt-2 leading-relaxed grow">
-                  {item.desc}
-                </p>
-                <a
-                  href={`https://wa.me/918586041111?text=${encodeURIComponent(
-                    `Hi, I'm interested in your ${item.title}.`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-6 text-xs tracking-[0.2em] uppercase text-ink/70 group-hover:text-gold transition-colors inline-flex items-center gap-2"
-                >
-                  Enquire <span aria-hidden>→</span>
-                </a>
+
+                <div className="p-7 flex flex-col grow">
+                  <span className="text-[10px] tracking-[0.2em] uppercase text-stone">
+                    {item.category}
+                  </span>
+                  <h3 className="font-display text-lg mt-1">{item.title}</h3>
+                  <p className="text-sm text-ink/60 mt-2 leading-relaxed grow">
+                    {item.desc}
+                  </p>
+                  <a
+                    href={`https://wa.me/918586041111?text=${encodeURIComponent(
+                      `Hi, I'm interested in your ${item.title}.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 text-xs tracking-[0.2em] uppercase text-ink/70 group-hover:text-gold transition-colors inline-flex items-center gap-2"
+                  >
+                    Enquire <span aria-hidden>→</span>
+                  </a>
+                </div>
               </div>
             </Reveal>
           ))}
