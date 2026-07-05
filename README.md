@@ -43,11 +43,11 @@ adapter needed since this is a static export, not SSR.
 - **Product photography**: category cards use simple gold line-art
   icons as placeholders instead of real photos. Swap in real product
   shots whenever the shop can share high-res images.
-- **Instagram embeds** (`src/components/InstagramCTA.tsx`): the 3 post
-  slots use placeholder URLs (`REPLACE_WITH_POST_1/2/3`). In the
-  Instagram app, open a real post/reel -> Share icon -> Copy Link, and
-  paste it in. This uses Instagram's own official embed script, so no
-  API key or account login is needed for this part.
+- **Instagram embeds** (`src/components/InstagramCTA.tsx`): now wired
+  to 3 real reels from @shrirajjewellers_. Swap any of the 3 whenever
+  you want to feature something newer — same Share -> Copy Link method.
+  This uses Instagram's own official embed script, so no API key or
+  account login is needed for this part.
   If you'd rather have posts update automatically without editing code
   every time, that needs a widget service (e.g. Elfsight, SnapWidget)
   connected to the shop's Instagram account directly by the owner -

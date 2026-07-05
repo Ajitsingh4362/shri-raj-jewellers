@@ -2,13 +2,11 @@ import { InstagramMark } from "./Icons";
 import Reveal from "./Reveal";
 import InstagramEmbed from "./InstagramEmbed";
 
-// NOTE for Ajit: these 3 URLs are placeholders. In the Instagram app, open
-// a post/reel -> Share icon -> Copy Link, and swap it in here before going
-// live. Format: https://www.instagram.com/p/POST_ID/ or /reel/POST_ID/
+// Real reel links from the shop's Instagram (@shrirajjewellers_)
 const posts = [
-  "https://www.instagram.com/p/REPLACE_WITH_POST_1/",
-  "https://www.instagram.com/p/REPLACE_WITH_POST_2/",
-  "https://www.instagram.com/p/REPLACE_WITH_POST_3/",
+  "https://www.instagram.com/reel/DAc3FL8SuEM/",
+  "https://www.instagram.com/reel/DaXM-vHPu6d/",
+  "https://www.instagram.com/reel/DaMx36nRzLw/",
 ];
 
 export default function InstagramCTA() {
