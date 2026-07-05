@@ -58,6 +58,16 @@ subscription (checked IBJA, GoldAPI, Metals-API — all paid or
 global-spot-only), so this stays a manually-updated "board" rather
 than an auto-fetching ticker.
 
+## Shop By Material (auto-scroll rows)
+
+New section between the trust strip and the gallery: one auto-scrolling
+row per category (Diamond, Gold, Silver, Bridal), alternating scroll
+direction, each item a circular icon badge that links to the gallery
+below. Data comes from the same `src/data/collectionItems.ts` used by
+the gallery, so adding an item there shows up in both places
+automatically. Row order/pairing logic lives in
+`src/components/ShopByMaterial.tsx`.
+
 ## Gallery photos
 
 Each of the 4 categories (Gold, Silver, Diamond, Bridal) now shows a
