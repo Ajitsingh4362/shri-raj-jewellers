@@ -46,16 +46,17 @@ it sits much closer to the original framing. Preview the live deploy
 and ping me if the crop needs nudging (`object-position` can shift the
 focal point) or if you'd rather swap to a shorter trimmed loop.
 
-## Today's Rate widget
+## Today's Rate widget (built, currently hidden)
 
-`src/data/rates.ts` — the ONLY file to edit daily. Currently placeholder
-0s on purpose (no invented numbers). Fill in the shop's actual gold
-24K/22K and silver rate (per gram, INR) and today's date before going
-live, then push. No free, reliable, India-accurate live rate API exists
-without a paid subscription (checked IBJA, GoldAPI, Metals-API — all
-paid or global-spot-only), so this is a manual "board" rather than an
-auto-fetching ticker. Same trust as walking past the shop's own rate
-board — just make sure it's not stale.
+`src/components/RateTicker.tsx` + `src/data/rates.ts` exist and work,
+but the widget is skipped from the page for now — not deleted. To turn
+it back on: import `RateTicker` in `src/components/Hero.tsx` and drop
+`<RateTicker />` back above the "Tilak Nagar · New Delhi" line. Fill
+real numbers in `rates.ts` first (see comments there) — no free,
+reliable, India-accurate live rate API exists without a paid
+subscription (checked IBJA, GoldAPI, Metals-API — all paid or
+global-spot-only), so this stays a manually-updated "board" rather
+than an auto-fetching ticker.
 
 ## Product gallery
 
