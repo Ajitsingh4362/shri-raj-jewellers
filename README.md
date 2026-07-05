@@ -60,12 +60,14 @@ than an auto-fetching ticker.
 
 ## Shop By Material (auto-scroll rows)
 
-New section between the trust strip and the gallery: one auto-scrolling
-row per category (Diamond, Gold, Silver, Bridal), alternating scroll
-direction, each item a circular icon badge that links to the gallery
-below. Data comes from the same `src/data/collectionItems.ts` used by
-the gallery, so adding an item there shows up in both places
-automatically. Row order/pairing logic lives in
+Two rows only (Diamond, Gold) per latest direction — Silver/Bridal
+data still exists in `collectionItems.ts` but isn't rendered here.
+Each circle now shows its own distinct photo (no repeats) via the
+`itemImage` map — 7 unique Pexels photos, free for commercial use.
+Diamond row has a cool platinum-blue border accent, Gold row keeps
+the warm gold accent, so the two rows read as visually distinct.
+Diamond scrolls left, Gold scrolls right. To bring Silver/Bridal
+back: add their `itemImage` entries and extend `rowOrder` in
 `src/components/ShopByMaterial.tsx`.
 
 ## Gallery photos

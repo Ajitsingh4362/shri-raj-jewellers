@@ -128,3 +128,30 @@ export const categorySubtitle: Record<SubCategory, string> = {
   Diamond: "Certified & Hallmarked",
   Bridal: "For Weddings & Functions",
 };
+
+// Distinct per-item photography for the "Shop By Material" rows —
+// each title maps to its own unique Pexels photo (free for commercial
+// use, no attribution required), so no image repeats across circles.
+// Currently only Diamond + Gold items are populated since those are
+// the only rows shown; add Silver/Bridal entries if those rows return.
+export const itemImage: Partial<Record<string, string>> = {
+  "Diamond Rings":
+    "https://images.pexels.com/photos/2735981/pexels-photo-2735981.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "Diamond Pendants":
+    "https://images.pexels.com/photos/12026052/pexels-photo-12026052.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "Diamond Earrings":
+    "https://images.pexels.com/photos/13595793/pexels-photo-13595793.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "Gold Bangles":
+    "https://images.pexels.com/photos/37485307/pexels-photo-37485307.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "Gold Chains":
+    "https://images.pexels.com/photos/12495610/pexels-photo-12495610.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "Gold Earrings":
+    "https://images.pexels.com/photos/12144990/pexels-photo-12144990.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "Gold Coins":
+    "https://images.pexels.com/photos/106152/pexels-photo-106152.jpeg?auto=compress&cs=tinysrgb&w=400",
+};
+
+export const rowAccent: Partial<Record<SubCategory, string>> = {
+  Diamond: "border-sky-300/70 hover:border-sky-300",
+  Gold: "border-gold/60 hover:border-gold",
+};

@@ -1,8 +1,14 @@
 import Reveal from "./Reveal";
 import ShopByRow from "./ShopByRow";
-import { items, categorySubtitle, type SubCategory } from "@/data/collectionItems";
+import {
+  items,
+  categorySubtitle,
+  itemImage,
+  rowAccent,
+  type SubCategory,
+} from "@/data/collectionItems";
 
-const rowOrder: SubCategory[] = ["Diamond", "Gold", "Silver", "Bridal"];
+const rowOrder: SubCategory[] = ["Diamond", "Gold"];
 
 export default function ShopByMaterial() {
   return (
@@ -22,7 +28,7 @@ export default function ShopByMaterial() {
         {rowOrder.map((cat, i) => {
           const rowItems = items
             .filter((item) => item.category === cat)
-            .map((item) => ({ icon: item.icon, title: item.title }));
+            .map((item) => ({ title: item.title, image: itemImage[item.title] }));
 
           return (
             <Reveal key={cat} delay={i * 90}>
@@ -45,6 +51,7 @@ export default function ShopByMaterial() {
               <ShopByRow
                 items={rowItems}
                 direction={i % 2 === 0 ? "left" : "right"}
+                accent={rowAccent[cat]}
               />
             </Reveal>
           );
